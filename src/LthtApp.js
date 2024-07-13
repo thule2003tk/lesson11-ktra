@@ -1,6 +1,6 @@
 import './App.css';
 import LthtListSinhvien from './components/LthtListSinhvien';
-import axios from '../api/LthtApi';
+import LthtApi from './api/LthtApi'; // Sử dụng đường dẫn './api/LthtApi'
 import { useEffect, useState } from 'react';
 import LthtAddOrEdit from './components/LthtAddOrEdit';
 
@@ -10,10 +10,10 @@ function LthtApp() {
   const [lthtAddOrEdit, setLthtAddOrEdit] = useState(false);
   const [lthtUser, setLthtUser] = useState({
     LthtHosv: "",
-    LthtTensv: "",
+    LthtTensv: "", 
     LthtNgaysinh:"",
     LthtNoisinh: "",
-    LthtMakh: {},
+    LthtMakh:"",
     LthtHocbong: "",
     LthtDiemtrungbinh:"",
     LthtMasv: ""
@@ -22,7 +22,7 @@ function LthtApp() {
   // Hàm để gọi API và lấy dữ liệu
   const lthtGetAllSinhvien = async () => {
     try {
-      const response = await axios.get("LthtSinhvien");
+      const response = await LthtApi.get("LthtSinhvien");
       console.log("Dữ liệu từ API:", response.data);
       setLthtListSinhvien(response.data);
     } catch (error) {
